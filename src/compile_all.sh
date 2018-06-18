@@ -1,0 +1,1 @@
+javac -d ../classes jleri/Grammar.java jleri/Keyword.java jleri/Choice.java
