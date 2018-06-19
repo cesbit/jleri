@@ -2,5 +2,5 @@ javac -d ../classes \
     jleri/Grammar.java \
     jleri/Parser.java \
     jleri/Keyword.java \
-    jleri/Choice.java \
+    jleri/Sequence.java \
     jleri/Result.java

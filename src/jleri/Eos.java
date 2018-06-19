@@ -1,9 +1,12 @@
 package jleri;
 
 
-class _Eos extends Element {
-    _Eos() {
-        super(0);
+class Eos extends Element {
+
+    public static final Eos EOS = new Eos();
+
+    Eos() {
+        super(null);
     }
 
     @Override
@@ -13,6 +16,4 @@ class _Eos extends Element {
 };
 
 
-public class Eos {
-    public static final _Eos EOS = new _Eos();
-}
+

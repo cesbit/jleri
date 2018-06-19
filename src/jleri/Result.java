@@ -8,7 +8,7 @@ public class Result {
     private Expecting expect;
 
     Result(boolean isValid, int pos, Node tree, Expecting expect) {
-        this.isValid = false;
+        this.isValid = isValid;
         this.pos = pos;
         this.tree = tree;
         this.expect = expect;

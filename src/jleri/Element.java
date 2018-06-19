@@ -1,11 +1,15 @@
 
 package jleri;
 
-abstract class Element {
-    final int gid;
+public abstract class Element {
+    private final Integer id;
 
-    Element(int gid) {
-        this.gid = gid;
+    Element(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
     }
 
     abstract Node parse(Parser p, Node parent);

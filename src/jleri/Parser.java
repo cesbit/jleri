@@ -34,10 +34,8 @@ class Parser {
         if (this.kwc.containsKey(pos)) {
             return this.kwc.get(pos);
         }
-        System.out.println(this.s.substring(pos));
         Matcher matcher = this.reKeywords.matcher(this.s.substring(pos));
         String kw = matcher.find() ? matcher.group() : null;
-        System.out.println("!!!!\n\n" + kw);
         this.kwc.put(pos, kw);
         return kw;
     }

@@ -1,24 +1,41 @@
 package jleri;
 
 public class Keyword extends Element {
-    String keyword;
-    boolean ignCase;
+    private final String keyword;
+    private final boolean ignCase;
 
-    public Keyword(int gid, String keyword, boolean ignCase) {
-        super(gid);
+    public Keyword(Integer id, String keyword, boolean ignCase) {
+        super(id);
         this.keyword = keyword;
         this.ignCase = ignCase;
+    }
+
+    public Keyword(String keyword, boolean ignCase) {
+        this(null, keyword, ignCase);
+    }
+
+    public Keyword(int id, String keyword) {
+        this(id, keyword, false);
+    }
+
+    public Keyword(String keyword) {
+        this(null, keyword, false);
+    }
+
+    /**
+     * @return the ignCase
+     */
+    public boolean isIgnCase() {
+        return ignCase;
     }
 
     @Override
     Node parse(Parser p, Node parent) {
         String s = p.getKeyword(parent.end);
-        boolean match = (this.ignCase)
-            ? s.equals(this.keyword)
-            : s.equalsIgnoreCase(this.keyword);
+        boolean match = this.ignCase
+            ? s.equalsIgnoreCase(this.keyword)
+            : s.equals(this.keyword);
         Node nd = null;
-
-        System.out.println("!!!!\n\n" + match);
 
         if (match) {
             nd = new Node(this, parent.end);
@@ -30,5 +47,4 @@ public class Keyword extends Element {
 
         return nd;
     }
-
 }

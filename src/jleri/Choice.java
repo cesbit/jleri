@@ -6,11 +6,11 @@ public class Choice extends Element {
     boolean mostGreedy;
     Element elems[];
 
-    Choice(int gid, boolean mostGreedy, Element[] elems) {
-        super(gid);
-        this.mostGreedy = mostGreedy;
+    Choice(int id, Element[] elems, boolean mostGreedy) {
+        super(id);
         assert elems.length > 0;
         this.elems = elems;
+        this.mostGreedy = mostGreedy;
     }
 
     Choice(Element[] elems) {
@@ -21,8 +21,8 @@ public class Choice extends Element {
         this(0, mostGreedy, elems);
     }
 
-    Choice(int gid, Element[] elems) {
-        this(gid, true, elems);
+    Choice(int id, Element[] elems) {
+        this(id, true, elems);
     }
 
     @Override
