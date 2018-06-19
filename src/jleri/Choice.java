@@ -25,4 +25,8 @@ public class Choice extends Element {
         this(gid, true, elems);
     }
 
+    @Override
+    Node parse(Parser p, Node parent) {
+        return null;
+    }
 }

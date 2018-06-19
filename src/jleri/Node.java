@@ -1,15 +1,20 @@
 package jleri;
 
-public class Node {
-    public Element elem;
-    public int start;
-    public int end;
-    public Object data;
+import java.util.ArrayList;
+
+
+class Node {
+    final Element elem;
+    final int start;
+    int end;
+    ArrayList<Node> children;
+    public Object data;  // Public, free to use for anything you like
 
     Node(Element elem, int start) {
         this.elem = elem;
         this.start = start;
         this.end = start;
-        this.data = Void;
+        this.children = new ArrayList<Node>();
+        this.data = null;
     }
 }
