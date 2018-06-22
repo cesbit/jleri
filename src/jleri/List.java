@@ -78,22 +78,38 @@ public class List extends Element {
             this.optClose);
     }
 
+    /**
+     * @return the optClose
+     */
     public boolean isOptClose() {
         return optClose;
     }
 
+    /**
+     * @return the min
+     */
     public int getMin() {
         return min;
     }
 
+    /**
+     * @return the max
+     */
     public Integer getMax() {
         return max;
     }
 
+    /**
+     * @return the delimiter
+     */
     public Element getDelimiter() {
         return delimiter;
     }
 
+    /**
+     * @param required true if required and false if optional
+     * @return Mode value based on required boolean
+     */
     private Mode getMode(boolean required) {
         return required ? Mode.REQUIRED : Mode.OPTIONAL;
     }

@@ -25,18 +25,6 @@ public class Choice extends Element {
         this(null, true, elems);
     }
 
-    /**
-     * @return the mostGreedy
-     */
-    public boolean isMostGreedy() {
-        return mostGreedy;
-    }
-
-    /**
-     * @param p is expexting a Parser Object
-     * @param parent is expectin a Node Object
-     * @return the mostGreedy
-     */
     @Override
     Node parse(Parser p, Node parent) {
         return this.mostGreedy
@@ -82,5 +70,12 @@ public class Choice extends Element {
         }
 
         return null;
+    }
+
+    /**
+     * @return the mostGreedy
+     */
+    public boolean isMostGreedy() {
+        return mostGreedy;
     }
 }

@@ -22,15 +22,28 @@ class Expecting {
         this.modes.put(0, Mode.REQUIRED);
     }
 
+    /**
+     * @return true if required has elements
+     */
     boolean hasRequired() {
         return this.required.size() > 0;
     }
 
+    /**
+     * Clears both required and optional
+     */
     void empty() {
         this.required.clear();
         this.optional.clear();
     }
 
+    /**
+     * Update expected according the current status
+     *
+     * @param elem will be added to either required or optional
+     * @param pos is the position in the parse string where the element
+     *  is expected
+     */
     void update(Element elem, int pos) {
         if (pos > this.pos) {
             this.empty();
@@ -45,6 +58,13 @@ class Expecting {
         }
     }
 
+    /**
+     * Update the expect mode. The mode will not be changed if the mode at pos
+     * is already set to OPTIONAL.
+     *
+     * @param pos is the position in the parse string where to change the mode
+     * @param mode is the new mode.
+     */
     void setMode(int pos, Mode mode) {
         if (this.modes.get(pos) == Mode.OPTIONAL) {
             return;
@@ -52,6 +72,9 @@ class Expecting {
         this.modes.put(pos, mode);
     }
 
+    /**
+     * @return the combined optional and required set of elements
+     */
     public HashSet<Element> getExpection() {
         this.required.addAll(this.optional);
         this.optional.clear();

@@ -16,6 +16,14 @@ public class Grammar {
         this(elem, Pattern.compile("^\\w+"));
     }
 
+    /**
+     * Parse a string to the grammar
+     *
+     * @param s is the string to parse
+     * @return a Result Object which contains a Node Tree and an isValid
+     *  property which can be checked if the parse was valid according the
+     *  grammar and more.
+     */
     public Result parse(String s) {
         Parser p = new Parser(s, this.reKeywords);
         Node nd = new Node(null, 0);
