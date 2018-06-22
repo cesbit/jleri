@@ -11,6 +11,7 @@ import jleri.Grammar;
 import jleri.Keyword;
 import jleri.List;
 import jleri.Optional;
+import jleri.Regex;
 import jleri.Repeat;
 import jleri.Result;
 import jleri.Sequence;
@@ -246,5 +247,26 @@ public class JleriTests {
         assertEquals(false, grammar.parse("=").isValid);
         assertEquals(
             "<Tokens id:null tokens:[" + shouldBe + "]>", tokens.toString());
+    }
+
+    @Test
+    public void testRegex() {
+        String pattern = "(/[^/\\\\]*(?:\\\\.[^/\\\\]*)*/i?)";
+        Regex regex = new Regex(pattern);
+        Grammar grammar = new Grammar(regex);
+
+        // assert statements
+        assertEquals(true, grammar.parse("/hi/").isValid);
+        assertEquals(true, grammar.parse("/hi/i").isValid);
+        assertEquals(true, grammar.parse("  //i ").isValid);
+        assertEquals(false, grammar.parse("x//i ").isValid);
+        assertEquals(false, grammar.parse("//x").isValid);
+        assertEquals(false, grammar.parse("").isValid);
+        assertEquals(false, grammar.parse("/").isValid);
+        assertEquals(false, grammar.parse("///").isValid);
+        assertEquals(pattern, regex.getPattern().pattern());
+        assertEquals(
+            String.format("<Regex id:null pattern:%s>", pattern),
+            regex.toString());
     }
 }

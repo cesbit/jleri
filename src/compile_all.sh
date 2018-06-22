@@ -5,6 +5,7 @@ javac -d ../classes \
     jleri/List.java \
     jleri/Optional.java \
     jleri/Parser.java \
+    jleri/Regex.java \
     jleri/Repeat.java \
     jleri/Result.java \
     jleri/Sequence.java \
