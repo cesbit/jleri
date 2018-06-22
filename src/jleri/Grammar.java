@@ -33,7 +33,7 @@ public class Grammar {
 
         int pos = isValid ? s.length() : p.expect.pos;
 
-        if (nd.end < end && p.expect.hasRequired()) {
+        if (nd.end < end && !p.expect.hasRequired()) {
             p.expect.setMode(nd.end, Mode.REQUIRED);
             p.expect.update(Eos.EOS, nd.end);
         }

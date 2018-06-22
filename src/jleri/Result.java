@@ -1,11 +1,12 @@
 package jleri;
 
+import java.util.HashSet;
+
 public class Result {
     public final boolean isValid;
     public final int pos;
     public final Node tree;
-
-    private Expecting expect;
+    private final Expecting expect;
 
     Result(boolean isValid, int pos, Node tree, Expecting expect) {
         this.isValid = isValid;
@@ -14,7 +15,7 @@ public class Result {
         this.expect = expect;
     }
 
-    Element[] getExpecting() {
+    public HashSet<Element> getExpecting() {
         return this.expect.getExpection();
     }
 };

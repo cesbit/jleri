@@ -1,7 +1,7 @@
 package jleri;
 
 
-class Eos extends Element {
+public class Eos extends Element {
 
     public static final Eos EOS = new Eos();
 
@@ -12,6 +12,11 @@ class Eos extends Element {
     @Override
     Node parse(Parser p, Node parent) {
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return "<EndOfStatement>";
     }
 };
 

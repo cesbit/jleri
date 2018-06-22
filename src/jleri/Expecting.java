@@ -52,9 +52,9 @@ class Expecting {
         this.modes.put(pos, mode);
     }
 
-    public Element[] getExpection() {
+    public HashSet<Element> getExpection() {
         this.required.addAll(this.optional);
         this.optional.clear();
-        return this.required.toArray(new Element[this.required.size()]);
+        return this.required;
     }
 }

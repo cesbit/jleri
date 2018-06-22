@@ -1,5 +1,7 @@
 package jleri;
 
+import java.util.Arrays;
+
 public class Sequence extends Element {
     private final Element[] elems;
 
@@ -24,5 +26,13 @@ public class Sequence extends Element {
         }
         p.appendChild(parent, nd);
         return nd;
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+            "<Sequence id:%d elems:%s>",
+            this.getId(),
+            Arrays.toString(this.elems));
     }
 }

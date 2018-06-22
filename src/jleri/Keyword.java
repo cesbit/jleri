@@ -14,7 +14,7 @@ public class Keyword extends Element {
         this(null, keyword, ignCase);
     }
 
-    public Keyword(int id, String keyword) {
+    public Keyword(Integer id, String keyword) {
         this(id, keyword, false);
     }
 
@@ -30,12 +30,20 @@ public class Keyword extends Element {
     }
 
     @Override
+    public String toString() {
+        return String.format(
+            "<Keyword id:%d keyword:%s>", this.getId(), this.keyword);
+    }
+
+    @Override
     Node parse(Parser p, Node parent) {
         String s = p.getKeyword(parent.end);
-        boolean match = this.ignCase
+
+        boolean match = s != null && (this.ignCase
             ? s.equalsIgnoreCase(this.keyword)
-            : s.equals(this.keyword);
-        Node nd = null;
+            : s.equals(this.keyword));
+
+            Node nd = null;
 
         if (match) {
             nd = new Node(this, parent.end);

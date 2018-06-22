@@ -3,30 +3,84 @@ package jleri;
 import java.util.Arrays;
 
 public class Choice extends Element {
-    boolean mostGreedy;
-    Element elems[];
+    private final boolean mostGreedy;
+    private final Element elems[];
 
-    Choice(int id, Element[] elems, boolean mostGreedy) {
+    public Choice(Integer id, boolean mostGreedy, Element... elems) {
         super(id);
         assert elems.length > 0;
         this.elems = elems;
         this.mostGreedy = mostGreedy;
     }
 
-    Choice(Element[] elems) {
-        this(0, true, elems);
+    public Choice(boolean mostGreedy, Element... elems) {
+        this(null, mostGreedy, elems);
     }
 
-    Choice(Boolean mostGreedy, Element[] elems) {
-        this(0, mostGreedy, elems);
-    }
-
-    Choice(int id, Element[] elems) {
+    public Choice(Integer id, Element... elems) {
         this(id, true, elems);
     }
 
+    public Choice(Element... elems) {
+        this(null, true, elems);
+    }
+
+    /**
+     * @return the mostGreedy
+     */
+    public boolean isMostGreedy() {
+        return mostGreedy;
+    }
+
+    /**
+     * @param p is expexting a Parser Object
+     * @param parent is expectin a Node Object
+     * @return the mostGreedy
+     */
     @Override
     Node parse(Parser p, Node parent) {
+        return this.mostGreedy
+            ? this.parseMostGreedy(p, parent)
+            : this.parseFirst(p, parent);
+    }
+
+    @Override
+    public String toString() {
+        return String.format(
+            "<Choice id:%d greedy:%b elems:%s>",
+            this.getId(),
+            this.mostGreedy,
+            Arrays.toString(this.elems));
+    }
+
+    private Node parseMostGreedy(Parser p, Node parent) {
+        Node mgNode = null;
+
+        for (Element elem : this.elems) {
+            Node nd = new Node(this, parent.end);
+            Node n = p.walk(nd, elem, Mode.REQUIRED);
+            if (n != null && (mgNode == null || nd.end > mgNode.end)) {
+                mgNode = nd;
+            }
+        }
+
+        if (mgNode != null) {
+            p.appendChild(parent, mgNode);
+        }
+
+        return mgNode;
+    }
+
+    private Node parseFirst(Parser p, Node parent) {
+        for (Element elem : this.elems) {
+            Node nd = new Node(this, parent.end);
+            Node n = p.walk(nd, elem, Mode.REQUIRED);
+            if (n != null) {
+                p.appendChild(parent, nd);
+                return nd;
+            }
+        }
+
         return null;
     }
 }

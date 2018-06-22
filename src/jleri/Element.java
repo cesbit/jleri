@@ -13,4 +13,5 @@ public abstract class Element {
     }
 
     abstract Node parse(Parser p, Node parent);
+    public abstract String toString();
 }

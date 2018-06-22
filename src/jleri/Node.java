@@ -15,6 +15,6 @@ class Node {
         this.start = start;
         this.end = start;
         this.children = new ArrayList<Node>();
-        this.data = null;
+        this.data = null;  // Public, free to use for anything you like
     }
 }
