@@ -11,6 +11,7 @@ import jleri.Grammar;
 import jleri.Keyword;
 import jleri.List;
 import jleri.Optional;
+import jleri.Ref;
 import jleri.Regex;
 import jleri.Repeat;
 import jleri.Result;
@@ -268,5 +269,19 @@ public class JleriTests {
         assertEquals(
             String.format("<Regex id:null pattern:%s>", pattern),
             regex.toString());
+    }
+
+    @Test
+    public void testRef() {
+        String pattern = "(/[^/\\\\]*(?:\\\\.[^/\\\\]*)*/i?)";
+        Ref ref = new Ref();
+        Keyword hi = new Keyword("hi");
+        Grammar grammar = new Grammar(ref);
+        ref.set(hi);
+
+        // assert statements
+        assertEquals(true, grammar.parse("hi").isValid);
+        assertEquals(false, grammar.parse("").isValid);
+        assertEquals(String.format("<Ref elem:%s>", hi), ref.toString());
     }
 }

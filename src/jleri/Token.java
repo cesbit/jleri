@@ -24,7 +24,7 @@ public class Token extends Element {
     }
 
     @Override
-    Node parse(Parser p, Node parent) {
+    Node parse(Parser p, Node parent, Rule r) throws MaxRecursionException {
         if (!this.match(p.s, parent.end)) {
             p.expect.update(this, parent.end);
             return null;

@@ -20,7 +20,8 @@ public abstract class Element {
      * @param parent Node to which this element will be added when successful
      * @return a new Node or null if the element has no match
      */
-    abstract Node parse(Parser p, Node parent);
+    abstract Node parse(Parser p, Node parent, Rule r)
+        throws MaxRecursionException;
 
     /**
      * @return info about the element

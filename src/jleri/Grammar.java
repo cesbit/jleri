@@ -24,10 +24,10 @@ public class Grammar {
      *  property which can be checked if the parse was valid according the
      *  grammar and more.
      */
-    public Result parse(String s) {
+    public Result parse(String s) throws MaxRecursionException {
         Parser p = new Parser(s, this.reKeywords);
         Node nd = new Node(null, 0);
-        Node n = p.walk(nd, this.elem, Mode.REQUIRED);
+        Node n = p.walk(nd, this.elem, Mode.REQUIRED, null);
         boolean isValid = n != null;
         int end = s.length();
 

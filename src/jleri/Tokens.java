@@ -17,7 +17,7 @@ public class Tokens extends Element {
     }
 
     @Override
-    Node parse(Parser p, Node parent) {
+    Node parse(Parser p, Node parent, Rule r) throws MaxRecursionException {
         for(Token t: tokens) {
             if (t.match(p.s, parent.end)) {
                 Node nd = new Node(this, parent.end);

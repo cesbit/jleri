@@ -24,7 +24,7 @@ public class Regex extends Element {
     }
 
     @Override
-    Node parse(Parser p, Node parent) {
+    Node parse(Parser p, Node parent, Rule r) throws MaxRecursionException {
         Matcher matcher = this.pattern.matcher(p.s.substring(parent.end));
         if (matcher.find() && matcher.start() == 0) {
             Node nd = new Node(this, parent.end);

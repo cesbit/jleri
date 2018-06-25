@@ -40,17 +40,17 @@ public class List extends Element {
     }
 
     @Override
-    Node parse(Parser p, Node parent) {
+    Node parse(Parser p, Node parent, Rule r) throws MaxRecursionException {
         Node nd = new Node(this, parent.end);
         Node n;
         int i = 0;
         int j = 0;
         while (true) {
-            n = p.walk(nd, this.elem, getMode(i < this.min));
+            n = p.walk(nd, this.elem, getMode(i < this.min), r);
             if (n == null)
                 break;
             i++;
-            n = p.walk(nd, this.delimiter, getMode(i < this.min));
+            n = p.walk(nd, this.delimiter, getMode(i < this.min), r);
             if (n == null)
                 break;
             j++;

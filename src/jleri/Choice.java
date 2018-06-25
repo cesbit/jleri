@@ -26,10 +26,10 @@ public class Choice extends Element {
     }
 
     @Override
-    Node parse(Parser p, Node parent) {
+    Node parse(Parser p, Node parent, Rule r) throws MaxRecursionException {
         return this.mostGreedy
-            ? this.parseMostGreedy(p, parent)
-            : this.parseFirst(p, parent);
+            ? this.parseMostGreedy(p, parent, r)
+            : this.parseFirst(p, parent, r);
     }
 
     @Override
@@ -41,12 +41,13 @@ public class Choice extends Element {
             Arrays.toString(this.elems));
     }
 
-    private Node parseMostGreedy(Parser p, Node parent) {
+    private Node parseMostGreedy(Parser p, Node parent, Rule r)
+            throws MaxRecursionException {
         Node mgNode = null;
 
         for (Element elem : this.elems) {
             Node nd = new Node(this, parent.end);
-            Node n = p.walk(nd, elem, Mode.REQUIRED);
+            Node n = p.walk(nd, elem, Mode.REQUIRED, r);
             if (n != null && (mgNode == null || nd.end > mgNode.end)) {
                 mgNode = nd;
             }
@@ -59,10 +60,11 @@ public class Choice extends Element {
         return mgNode;
     }
 
-    private Node parseFirst(Parser p, Node parent) {
+    private Node parseFirst(Parser p, Node parent, Rule r)
+            throws MaxRecursionException {
         for (Element elem : this.elems) {
             Node nd = new Node(this, parent.end);
-            Node n = p.walk(nd, elem, Mode.REQUIRED);
+            Node n = p.walk(nd, elem, Mode.REQUIRED, r);
             if (n != null) {
                 p.appendChild(parent, nd);
                 return nd;

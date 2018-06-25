@@ -27,11 +27,11 @@ public class Repeat extends Element {
     }
 
     @Override
-    Node parse(Parser p, Node parent) {
+    Node parse(Parser p, Node parent, Rule r) throws MaxRecursionException {
         Node nd = new Node(this, parent.end);
         int i;
         for (i = 0; this.max == null || i < this.max; i++) {
-            if (p.walk(nd, this.elem, Mode.REQUIRED) == null)
+            if (p.walk(nd, this.elem, Mode.REQUIRED, r) == null)
                 break;
         }
 

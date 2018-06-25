@@ -16,10 +16,10 @@ public class Sequence extends Element {
     }
 
     @Override
-    Node parse(Parser p, Node parent) {
+    Node parse(Parser p, Node parent, Rule r) throws MaxRecursionException {
         Node nd = new Node(this, parent.end);
         for (Element elem : this.elems) {
-            Node n = p.walk(nd, elem, Mode.REQUIRED);
+            Node n = p.walk(nd, elem, Mode.REQUIRED, r);
             if (n == null) {
                 return null;
             }

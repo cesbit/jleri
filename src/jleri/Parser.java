@@ -19,7 +19,8 @@ class Parser {
         this.kwc = new HashMap<Integer, String>();
     }
 
-    Node walk(Node parent, Element elem, Mode mode) {
+    Node walk(Node parent, Element elem, Mode mode, Rule r)
+            throws MaxRecursionException {
         while (parent.end < this.s.length() &&
                 Character.isWhitespace(this.s.charAt(parent.end))) {
             parent.end++;
@@ -27,7 +28,7 @@ class Parser {
         	/* set expecting mode */
 	    this.expect.setMode(parent.start, mode);
 
-        return elem.parse(this, parent);
+        return elem.parse(this, parent, r);
     }
 
     String getKeyword(int pos) {

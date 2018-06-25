@@ -36,7 +36,7 @@ public class Keyword extends Element {
     }
 
     @Override
-    Node parse(Parser p, Node parent) {
+    Node parse(Parser p, Node parent, Rule r) throws MaxRecursionException {
         String s = p.getKeyword(parent.end);
 
         boolean match = s != null && (this.ignCase

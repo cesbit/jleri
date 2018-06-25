@@ -13,9 +13,9 @@ public class Optional extends Element {
     }
 
     @Override
-    Node parse(Parser p, Node parent) {
+    Node parse(Parser p, Node parent, Rule r) throws MaxRecursionException {
         Node nd = new Node(this, parent.end);
-        Node n = p.walk(nd, this.elem, Mode.OPTIONAL);
+        Node n = p.walk(nd, this.elem, Mode.OPTIONAL, r);
         if (n != null) {
             p.appendChild(parent, nd);
         }
