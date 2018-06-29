@@ -3,9 +3,13 @@ package jleri;
 public class Prio extends Element {
     private final Element wrapped;
 
-    public Prio(Integer id, Element... elems) {
+    public Prio(Enum id, Element... elems) {
         super(id);
         this.wrapped = new Wrapped(elems);
+    }
+
+    public Prio(Element... elems) {
+        this(null, elems);
     }
 
     @Override

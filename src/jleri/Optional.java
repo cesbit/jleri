@@ -3,7 +3,7 @@ package jleri;
 public class Optional extends Element {
     private final Element elem;
 
-    public Optional(Integer id, Element elem) {
+    public Optional(Enum id, Element elem) {
         super(id);
         this.elem = elem;
     }

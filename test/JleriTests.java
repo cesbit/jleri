@@ -11,19 +11,66 @@ import jleri.Grammar;
 import jleri.Keyword;
 import jleri.List;
 import jleri.Optional;
+import jleri.Prio;
+import jleri.MaxRecursionException;
 import jleri.Ref;
 import jleri.Regex;
 import jleri.Repeat;
 import jleri.Result;
 import jleri.Sequence;
+import jleri.This;
 import jleri.Token;
 import jleri.Tokens;
 
+enum TestIds {ID};
+
+class JsonGrammar extends Grammar {
+
+    enum Ids {
+        R_STRING, R_FLOAT, R_INTEGER
+    }
+
+    private static final Ref _START = new Ref();
+    private static final Regex R_STRING = new Regex(
+        Ids.R_STRING, "^(\")(?:(?=(\\\\?))\\2.)*?\\1");
+
+    private static final Regex R_FLOAT = new Regex(
+        Ids.R_FLOAT, "-?[0-9]+\\.?[0-9]+");
+    private static final Regex R_INTEGER = new Regex(
+        Ids.R_INTEGER, "-?[0-9]+");
+
+    private static final Keyword K_TRUE = new Keyword("true");
+    private static final Keyword K_FALSE = new Keyword("false");
+    private static final Keyword K_NULL = new Keyword("null");
+
+    private static final Sequence JMAP_ITEM = new Sequence(
+        R_STRING, new Token(':'), _START);
+
+    private static final Sequence JMAP = new Sequence(
+        new Token('{'), new List(JMAP_ITEM), new Token('}'));
+
+    private static final Sequence JARR = new Sequence(
+        new Token('['), new List(_START), new Token(']'));
+
+    private static final Element START = _START.set(new Choice(
+        R_STRING,
+        R_FLOAT,
+        R_INTEGER,
+        K_TRUE,
+        K_FALSE,
+        K_NULL,
+        JMAP,
+        JARR));
+
+    JsonGrammar() {
+        super(START);
+    }
+}
 
 public class JleriTests {
 
     @Test
-    public void testKeyword() {
+    public void testKeyword() throws MaxRecursionException {
         Keyword hi = new Keyword("hi");
         Grammar grammar = new Grammar(hi);
 
@@ -45,17 +92,18 @@ public class JleriTests {
     }
 
     @Test
-    public void testKeywordIgnCase() {
-        Integer id = 1;
-        Keyword hi = new Keyword(id, "hi", true);
+    public void testKeywordIgnCase() throws MaxRecursionException {
+
+        Keyword hi = new Keyword(TestIds.ID, "hi", true);
         Grammar grammar = new Grammar(hi);
 
         // assert statements
-        assertEquals(id, hi.getId());
+        assertEquals(TestIds.ID, hi.getId());
         assertEquals(true, hi.isIgnCase());
         assertEquals(true, grammar.parse("hi").isValid);
         assertEquals(true, grammar.parse("Hi").isValid);
         assertEquals(false, grammar.parse("hello").isValid);
+        assertEquals(String.format("<Keyword id:%s keyword:hi>", TestIds.ID.name()), hi.toString());
         assertEquals(
             new HashSet<Element>() {{
                 add(hi);
@@ -64,7 +112,7 @@ public class JleriTests {
     }
 
     @Test
-    public void testSequence() {
+    public void testSequence() throws MaxRecursionException {
         Keyword hi = new Keyword("hi");
         Keyword iris = new Keyword("iris");
         Sequence seq = new Sequence(hi, iris);
@@ -82,7 +130,7 @@ public class JleriTests {
     }
 
     @Test
-    public void testChoiceMostGreedy() {
+    public void testChoiceMostGreedy() throws MaxRecursionException {
         Keyword hi = new Keyword("hi");
         Keyword iris = new Keyword("iris");
         Sequence seq = new Sequence(hi, iris);
@@ -102,7 +150,7 @@ public class JleriTests {
     }
 
     @Test
-    public void testChoiceFirstMatch() {
+    public void testChoiceFirstMatch() throws MaxRecursionException {
         Keyword hi = new Keyword("hi");
         Keyword iris = new Keyword("iris");
         Sequence seq = new Sequence(hi, iris);
@@ -122,7 +170,7 @@ public class JleriTests {
     }
 
     @Test
-    public void testOptional() {
+    public void testOptional() throws MaxRecursionException {
         Keyword hi = new Keyword("hi");
         Optional optional = new Optional(hi);
         Grammar grammar = new Grammar(optional);
@@ -146,7 +194,7 @@ public class JleriTests {
     }
 
     @Test
-    public void testToken() {
+    public void testToken() throws MaxRecursionException {
         Token dot = new Token(".");
         Grammar grammar = new Grammar(dot);
 
@@ -158,7 +206,7 @@ public class JleriTests {
     }
 
     @Test
-    public void testTokenMultiChars() {
+    public void testTokenMultiChars() throws MaxRecursionException {
         Token not = new Token("!=");
         Grammar grammar = new Grammar(not);
 
@@ -169,7 +217,7 @@ public class JleriTests {
     }
 
     @Test
-    public void testList() {
+    public void testList() throws MaxRecursionException {
         Keyword hi = new Keyword("hi");
         List list = new List(hi);
         Grammar grammar = new Grammar(list);
@@ -185,7 +233,7 @@ public class JleriTests {
     }
 
     @Test
-    public void testListAltOptions() {
+    public void testListAltOptions() throws MaxRecursionException {
         Keyword hi = new Keyword("hi");
         List list = new List(hi, new Token('-'), 1, 3, true);
         Grammar grammar = new Grammar(list);
@@ -203,7 +251,7 @@ public class JleriTests {
     }
 
     @Test
-    public void testRepeat() {
+    public void testRepeat() throws MaxRecursionException {
         Keyword hi = new Keyword("hi");
         Repeat repeat = new Repeat(hi);
         Grammar grammar = new Grammar(repeat);
@@ -219,7 +267,7 @@ public class JleriTests {
     }
 
     @Test
-    public void testRepeatAltOptions() {
+    public void testRepeatAltOptions() throws MaxRecursionException {
         Keyword hi = new Keyword("hi");
         Repeat repeat = new Repeat(hi, 1, 3);
         Grammar grammar = new Grammar(repeat);
@@ -234,7 +282,7 @@ public class JleriTests {
     }
 
     @Test
-    public void testTokens() {
+    public void testTokens() throws MaxRecursionException {
         Tokens tokens = new Tokens("== != >= <=   >   < ");
         Grammar grammar = new Grammar(tokens);
         String shouldBe = "== != >= <= > <";
@@ -251,7 +299,7 @@ public class JleriTests {
     }
 
     @Test
-    public void testRegex() {
+    public void testRegex() throws MaxRecursionException {
         String pattern = "(/[^/\\\\]*(?:\\\\.[^/\\\\]*)*/i?)";
         Regex regex = new Regex(pattern);
         Grammar grammar = new Grammar(regex);
@@ -272,8 +320,7 @@ public class JleriTests {
     }
 
     @Test
-    public void testRef() {
-        String pattern = "(/[^/\\\\]*(?:\\\\.[^/\\\\]*)*/i?)";
+    public void testRef() throws MaxRecursionException {
         Ref ref = new Ref();
         Keyword hi = new Keyword("hi");
         Grammar grammar = new Grammar(ref);
@@ -283,5 +330,44 @@ public class JleriTests {
         assertEquals(true, grammar.parse("hi").isValid);
         assertEquals(false, grammar.parse("").isValid);
         assertEquals(String.format("<Ref elem:%s>", hi), ref.toString());
+    }
+
+    @Test
+    public void testPrio() throws MaxRecursionException {
+        Prio prio = new Prio(
+            new Keyword("hi"),
+            new Keyword("bye"),
+            new Sequence(new Token('('), This.THIS, new Token(')')),
+            new Sequence(This.THIS, new Keyword("or"), This.THIS),
+            new Sequence(This.THIS, new Keyword("and"), This.THIS)
+        );
+
+        Grammar grammar = new Grammar(prio);
+
+        // assert statements
+        assertEquals(true, grammar.parse("hi").isValid);
+        assertEquals(true, grammar.parse("(bye)").isValid);
+        assertEquals(true, grammar.parse("(hi and bye)").isValid);
+        assertEquals(true, grammar.parse("(hi or hi) and (hi or hi)").isValid);
+        assertEquals(true, grammar.parse("(hi or (hi and bye))").isValid);
+        assertEquals(false, grammar.parse("").isValid);
+        assertEquals(false, grammar.parse("(hi").isValid);
+        assertEquals(false, grammar.parse("()").isValid);
+        assertEquals(false, grammar.parse("(hi or hi) and").isValid);
+        try {
+            grammar.parse("(((((((((((hi)))))))))))");
+            assertEquals(false, true);  // the above statement should fail
+        } catch (MaxRecursionException ex) {
+            assertEquals("Max recursion depth reached", ex.getMessage());
+        }
+    }
+
+    @Test
+    public void testJsonGrammar() throws MaxRecursionException {
+        JsonGrammar grammar = new JsonGrammar();
+
+        // assert statements
+        assertEquals(true, grammar.parse(
+            "{\"valid\": [1, 2, 3, true, false, null]}").isValid);
     }
 }

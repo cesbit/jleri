@@ -5,7 +5,7 @@ public class Repeat extends Element {
     private final int min;
     private final Integer max;
 
-    public Repeat(Integer id, Element elem, int min, Integer max) {
+    public Repeat(Enum id, Element elem, int min, Integer max) {
         super(id);
         assert min >= 0;
         assert max == null || max > min;
@@ -18,7 +18,7 @@ public class Repeat extends Element {
         this(null, elem, min, max);
     }
 
-    public Repeat(Integer id, Element elem) {
+    public Repeat(Enum id, Element elem) {
         this(id, elem, 0, null);
     }
 

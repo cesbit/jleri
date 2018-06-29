@@ -7,7 +7,7 @@ public class List extends Element {
     private final Integer max;
     private final boolean optClose;
 
-    public List(Integer id,
+    public List(Enum id,
                 Element elem,
                 Element delimiter,
                 int min,
@@ -31,7 +31,7 @@ public class List extends Element {
         this(null, elem, delimiter, min, max, optClose);
     }
 
-    public List(Integer id, Element elem) {
+    public List(Enum id, Element elem) {
         this(id, elem, new Token(','), 0, null, false);
     }
 

@@ -6,12 +6,12 @@ import java.util.regex.Pattern;
 public class Regex extends Element {
     private final Pattern pattern;
 
-    public Regex(Integer id, Pattern pattern) {
+    public Regex(Enum id, Pattern pattern) {
         super(id);
         this.pattern = pattern;
     }
 
-    public Regex(Integer id, String s) {
+    public Regex(Enum id, String s) {
         this(id, Pattern.compile(s));
     }
 

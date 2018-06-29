@@ -2,16 +2,16 @@
 package jleri;
 
 public abstract class Element {
-    private final Integer id;
+    private final Enum id;
 
-    Element(Integer id) {
+    Element(Enum id) {
         this.id = id;
     }
 
     /**
      * @return the id of this element
      */
-    public Integer getId() {
+    public Enum getId() {
         return id;
     }
 

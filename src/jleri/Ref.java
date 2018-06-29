@@ -8,8 +8,9 @@ public class Ref extends Element {
         this.elem = null;
     }
 
-    public void set(Element elem) {
+    public Element set(Element elem) {
         this.elem = elem;
+        return this.elem;
     }
 
     @Override

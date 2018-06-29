@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Sequence extends Element {
     private final Element[] elems;
 
-    public Sequence(Integer id, Element... elems) {
+    public Sequence(Enum id, Element... elems) {
         super(id);
         assert elems.length > 0;
         this.elems = elems;

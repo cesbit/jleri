@@ -5,7 +5,7 @@ public class Eos extends Element {
 
     public static final Eos EOS = new Eos();
 
-    Eos() {
+    private Eos() {
         super(null);
     }
 

@@ -3,8 +3,8 @@ package jleri;
 import java.util.HashMap;
 
 class Rule {
-    HashMap<Integer, Node> tested;
     int depth;
+    final HashMap<Integer, Node> tested;
     final Element root;
 
     Rule(Element root) {

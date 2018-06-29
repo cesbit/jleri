@@ -12,6 +12,10 @@ public class Grammar {
         this.reKeywords = reKeywords;
     }
 
+    public Grammar(Element elem, String reKeywords) {
+        this(elem, Pattern.compile(reKeywords));
+    }
+
     public Grammar(Element elem) {
         this(elem, Pattern.compile("^\\w+"));
     }

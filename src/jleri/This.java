@@ -5,7 +5,7 @@ public class This extends Element {
 
     public static final This THIS = new This();
 
-    This() {
+    private This() {
         super(null);
     }
 

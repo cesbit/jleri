@@ -1,7 +1,9 @@
 package jleri;
 
 public class MaxRecursionException extends Exception {
-    public String toString() {
-        return ("Max recursion depth reached") ;
+    private static final long serialVersionUID = 65745547234902956L;
+
+    public MaxRecursionException() {
+        super("Max recursion depth reached");
     }
 }
