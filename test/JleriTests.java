@@ -21,51 +21,10 @@ import jleri.Sequence;
 import jleri.This;
 import jleri.Token;
 import jleri.Tokens;
+import jlerijson.JsonGrammar;
+import jlerisiri.SiriGrammar;
 
 enum TestIds {ID};
-
-class JsonGrammar extends Grammar {
-
-    enum Ids {
-        R_STRING, R_FLOAT, R_INTEGER
-    }
-
-    private static final Ref _START = new Ref();
-    private static final Regex R_STRING = new Regex(
-        Ids.R_STRING, "^(\")(?:(?=(\\\\?))\\2.)*?\\1");
-
-    private static final Regex R_FLOAT = new Regex(
-        Ids.R_FLOAT, "-?[0-9]+\\.?[0-9]+");
-    private static final Regex R_INTEGER = new Regex(
-        Ids.R_INTEGER, "-?[0-9]+");
-
-    private static final Keyword K_TRUE = new Keyword("true");
-    private static final Keyword K_FALSE = new Keyword("false");
-    private static final Keyword K_NULL = new Keyword("null");
-
-    private static final Sequence JMAP_ITEM = new Sequence(
-        R_STRING, new Token(':'), _START);
-
-    private static final Sequence JMAP = new Sequence(
-        new Token('{'), new List(JMAP_ITEM), new Token('}'));
-
-    private static final Sequence JARR = new Sequence(
-        new Token('['), new List(_START), new Token(']'));
-
-    private static final Element START = _START.set(new Choice(
-        R_STRING,
-        R_FLOAT,
-        R_INTEGER,
-        K_TRUE,
-        K_FALSE,
-        K_NULL,
-        JMAP,
-        JARR));
-
-    JsonGrammar() {
-        super(START);
-    }
-}
 
 public class JleriTests {
 
@@ -369,5 +328,20 @@ public class JleriTests {
         // assert statements
         assertEquals(true, grammar.parse(
             "{\"valid\": [1, 2, 3, true, false, null]}").isValid);
+    }
+
+    @Test
+    public void testSiriGrammar() throws MaxRecursionException {
+        SiriGrammar grammar = new SiriGrammar();
+
+        // assert statements
+        assertEquals(true, grammar.parse(
+            "select mean(1h * 5) from /someexpr.*/").isValid);
+        assertEquals(true, grammar.parse(
+            "list series name, length").isValid);
+        assertEquals(true, grammar.parse(
+            "list series where type == string and length > 5").isValid);
+        assertEquals(false, grammar.parse(
+            "list series name, length, ").isValid);
     }
 }
