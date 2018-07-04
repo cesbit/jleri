@@ -2,7 +2,7 @@ package jlerisiri;
 
 /**
  * This grammar is generated using the Grammar.export_java() method and
- * should be used with the goleri module.
+ * should be used with the jleri module.
  *
  * Source class: SiriGrammar
  * Created at: 2018-07-04 11:04:44
