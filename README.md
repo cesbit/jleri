@@ -390,7 +390,7 @@ a reference to any element can be made. `Ref()` accepts no arguments.
 >For example:
 >```java
 >Element r = new Ref();
->((Ref) r).set(new Optional(r);  // DON'T DO THIS
+>((Ref) r).set(new Optional(r));  // DON'T DO THIS
 >```
 >Use [Prio](#prio) if such recursive construction is required.
 
