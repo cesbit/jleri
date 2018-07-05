@@ -1,5 +1,5 @@
-# JLeRi
-
+Java Left-Right Parser
+========================
 A left-right parser for the Java language.
 
 ---------------------------------------
