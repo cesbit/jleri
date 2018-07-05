@@ -96,7 +96,7 @@ you should never set the `id` to `null` yourself, just omit the `id` in that cas
 syntax:
 ```java
 import jleri.Keyword;
-Keyword(Enum id=null, String keyword, boolean ignCase=false)
+//  Keyword(Enum id=null, String keyword, boolean ignCase=false)
 ```
 The parser needs to match the keyword which is just a string. When matching keywords we need to tell the parser what characters are allowed in keywords. By default Jleri uses `^\w+` which is equal to `^[A-Za-z0-9_]+`. We can overwrite the default by using a second argument while calling `super` inside the grammar constructor.
 Keyword() accepts a `boolean` argument `ignCase` which when omitted is set to `false` and tells the parser if we should match case insensitive.
@@ -127,7 +127,7 @@ public class TicTacToe extends Grammar {
 syntax:
 ```java
 import jleri.Regex;
-Regex(Enum id=null, <java.util.regex.Pattern, String> pattern)
+// Regex(Enum id=null, <java.util.regex.Pattern, String> pattern)
 ```
 The parser uses a regular expression for matching this element.
 
@@ -137,7 +137,7 @@ See [Quick usage](#quick-usage) for an example on how to use `jleri.Regex`.
 syntax:
 ```java
 import jleri.Token;
-Token(Enum id=null, <String, Char> token)
+// Token(Enum id=null, <String, Char> token)
 ```
 A token can be one or more characters and is usually used to match operators like `+`, `-`, `//` and so on.
 
@@ -167,7 +167,7 @@ public class Ni extends Grammar {
 syntax:
 ```java
 import jleri.Tokens;
-Tokens(Enum id=null, String tokens)
+// Tokens(Enum id=null, String tokens)
 ```
 Can be used to register multiple tokens at once. The `tokens` argument should be a string with tokens separated by spaces. If given tokens are different in size the parser will try to match the longest tokens first.
 
@@ -200,7 +200,7 @@ public class Ni extends Grammar {
 syntax:
 ```java
 import jleri.Sequence;
-Sequence(Enum id=null, Element... elems)
+// Sequence(Enum id=null, Element... elems)
 ```
 The parser needs to match each element in a sequence.
 
@@ -232,7 +232,7 @@ public class TicTacToe extends Grammar {
 syntax:
 ```java
 import jleri.Choice;
-Choice(Enum id=null, boolean mostGreedy=true, Element... elems)
+// Choice(Enum id=null, boolean mostGreedy=true, Element... elems)
 ```
 The parser needs to choose between one of the given elements. Choice accepts a `boolean` argument `mostGreedy` which when omitted defaults to `true`. When `mostGreedy` is set to `false` the parser will stop at the first match. When `true` the parser will try each element and returns the longest match. Setting `mostGreedy` to `false` can provide some extra performance. Note that the parser will try to match each element in the exact same order they are parsed to Choice.
 
@@ -267,7 +267,7 @@ public class MyGrammar extends Grammar {
 syntax:
 ```java
 import jleri.Repeat;
-Repeat(Enum id=null, Element elem, int min=0, Integer max=null)
+// Repeat(Enum id=null, Element elem, int min=0, Integer max=null)
 ```
 The parser needs at least `min` elements and at most `max` elements. `min` can be any integer value equal or higher than 0. When `max` is set to `null` we allow unlimited number of elements or in case a value is used it must al least equal or higher than `min`.
 
@@ -311,7 +311,14 @@ public class MyGrammar extends Grammar {
 syntax:
 ```java
 import jleri.List;
-List(Enum id=null, Element elem, Element delimiter=new Token(','), int min=0, Integer max=null, boolean optClose=false);
+/**
+ * List(Enum id=null,
+ *      Element elem,
+ *      Element delimiter=new Token(','),
+ *      int min=0,
+ *      Integer max=null,
+ *      boolean optClose=false);
+ */
 ```
 List is like Repeat but with a delimiter. A comma (`Token`) is used as default delimiter but any element is allowed. `mix` and `max` work exactly like with Repeat. Argument `optClose` can be set to `true` to allow the list to end with a delimiter. When omitted this is set to `false` which means the list has to end with an element.
 
@@ -339,7 +346,7 @@ public class Ni extends Grammar {
 syntax:
 ```java
 import jleri.Optional;
-Optional(Enum id=null, Element elem)
+// Optional(Enum id=null, Element elem)
 ```
 The parser looks for an optional element. It is like using `Repeat(element, 0, 1)` but we encourage to use `Optional` since it is more readable. (and slightly faster)
 
@@ -373,7 +380,7 @@ public class MyGrammar extends Grammar {
 syntax:
 ```java
 import jleri.Ref;
-Ref()
+// Ref()
 ```
 The grammar can make a forward reference to make recursion possible. In the example below we create a forward reference to START but note that
 a reference to any element can be made. `Ref()` accepts no arguments.
@@ -417,7 +424,7 @@ syntax:
 ```java
 import jleri.Prio;
 import jleri.This;  // exposes This.THIS
-Prio(Enum id, Element... elems)
+// Prio(Enum id, Element... elems)
 ```
 Choose the first match from the `Prio` elements and allow `This.THIS` for recursive operations. With `This.THIS` we point to the `Prio` element.
 Probably the example below explains how `Prio` and `This.THIS` can be used.
