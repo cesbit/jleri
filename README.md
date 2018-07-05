@@ -17,6 +17,7 @@ A left-right parser for the Java language.
     * [List](#list)
     * [Optional](#optional)
     * [Ref](#ref)
+    * [Prio](#prio)
 
 
 ---------------------------------------
