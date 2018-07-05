@@ -16,3 +16,5 @@ javac -d ../classes \
     jleri/This.java \
     jleri/Token.java \
     jleri/Tokens.java \
+
+jar cvf ../jleri.jar -C ../classes .
