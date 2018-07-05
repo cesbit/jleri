@@ -314,7 +314,9 @@ public class JleriTests {
         assertEquals(false, grammar.parse("()").isValid);
         assertEquals(false, grammar.parse("(hi or hi) and").isValid);
         try {
-            grammar.parse("(((((((((((hi)))))))))))");
+            grammar.parse(
+                "(((((((((((((((((((((((((((((((((((((((((((((((((((hi" +
+                ")))))))))))))))))))))))))))))))))))))))))))))))))))");
             assertEquals(false, true);  // the above statement should fail
         } catch (MaxRecursionException ex) {
             assertEquals("Max recursion depth reached", ex.getMessage());

@@ -3,7 +3,7 @@ package jleri;
 import java.util.Arrays;
 
 class Wrapped extends Element {
-    private static int MAX_RECURSION_DEPTH = 10;
+    private static int MAX_RECURSION_DEPTH = 50;
     private final Element[] elems;
 
     Wrapped(Element... elems) {
