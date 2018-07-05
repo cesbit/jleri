@@ -93,7 +93,6 @@ can be used to identify the Element, for example in an node tree. The default id
 you should never set the `id` to `null` yourself, just omit the `id` in that case.
 
 ### Keyword
-syntax:
 ```java
 import jleri.Keyword;
 //  Keyword(Enum id=null, String keyword, boolean ignCase=false)
@@ -124,7 +123,6 @@ public class TicTacToe extends Grammar {
 ```
 
 ### Regex
-syntax:
 ```java
 import jleri.Regex;
 // Regex(Enum id=null, <java.util.regex.Pattern, String> pattern)
@@ -134,7 +132,6 @@ The parser uses a regular expression for matching this element.
 See [Quick usage](#quick-usage) for an example on how to use `jleri.Regex`.
 
 ### Token
-syntax:
 ```java
 import jleri.Token;
 // Token(Enum id=null, <String, Char> token)
@@ -164,7 +161,6 @@ public class Ni extends Grammar {
 ```
 
 ### Tokens
-syntax:
 ```java
 import jleri.Tokens;
 // Tokens(Enum id=null, String tokens)
@@ -197,7 +193,6 @@ public class Ni extends Grammar {
 ```
 
 ### Sequence
-syntax:
 ```java
 import jleri.Sequence;
 // Sequence(Enum id=null, Element... elems)
@@ -229,7 +224,6 @@ public class TicTacToe extends Grammar {
 ```
 
 ### Choice
-syntax:
 ```java
 import jleri.Choice;
 // Choice(Enum id=null, boolean mostGreedy=true, Element... elems)
@@ -264,7 +258,6 @@ public class MyGrammar extends Grammar {
 ```
 
 ### Repeat
-syntax:
 ```java
 import jleri.Repeat;
 // Repeat(Enum id=null, Element elem, int min=0, Integer max=null)
@@ -308,7 +301,6 @@ public class MyGrammar extends Grammar {
 ```
 
 ### List
-syntax:
 ```java
 import jleri.List;
 /**
@@ -343,7 +335,6 @@ public class Ni extends Grammar {
 ```
 
 ### Optional
-syntax:
 ```java
 import jleri.Optional;
 // Optional(Enum id=null, Element elem)
@@ -377,7 +368,6 @@ public class MyGrammar extends Grammar {
 ```
 
 ### Ref
-syntax:
 ```java
 import jleri.Ref;
 // Ref()
@@ -420,7 +410,6 @@ public class NestedNi extends Grammar {
 ```
 
 ### Prio
-syntax:
 ```java
 import jleri.Prio;
 import jleri.This;  // exposes This.THIS
