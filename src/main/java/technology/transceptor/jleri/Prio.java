@@ -1,4 +1,4 @@
-package jleri;
+package technology.transceptor.jleri;
 
 public class Prio extends Element {
     private final Element wrapped;

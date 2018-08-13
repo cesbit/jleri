@@ -1,4 +1,4 @@
-package jleri;
+package technology.transceptor.jleri;
 
 
 public class Eos extends Element {

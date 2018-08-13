@@ -1,4 +1,4 @@
-package jleri;
+package technology.transceptor.jleri;
 
 public class Keyword extends Element {
     private final String keyword;

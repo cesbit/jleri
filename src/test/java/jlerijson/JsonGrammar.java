@@ -8,15 +8,15 @@ package jlerijson;
  * Created at: 2018-07-04 11:04:11
  */
 
-import jleri.Grammar;
-import jleri.Element;
-import jleri.Regex;
-import jleri.Ref;
-import jleri.Sequence;
-import jleri.List;
-import jleri.Token;
-import jleri.Keyword;
-import jleri.Choice;
+import technology.transceptor.jleri.Grammar;
+import technology.transceptor.jleri.Element;
+import technology.transceptor.jleri.Regex;
+import technology.transceptor.jleri.Ref;
+import technology.transceptor.jleri.Sequence;
+import technology.transceptor.jleri.List;
+import technology.transceptor.jleri.Token;
+import technology.transceptor.jleri.Keyword;
+import technology.transceptor.jleri.Choice;
 
 public class JsonGrammar extends Grammar {
     enum Ids {

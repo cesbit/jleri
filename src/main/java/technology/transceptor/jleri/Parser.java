@@ -1,4 +1,4 @@
-package jleri;
+package technology.transceptor.jleri;
 
 import java.util.HashMap;
 import java.util.regex.Pattern;

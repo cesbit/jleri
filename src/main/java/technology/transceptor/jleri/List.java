@@ -1,4 +1,4 @@
-package jleri;
+package technology.transceptor.jleri;
 
 public class List extends Element {
     private final Element elem;
@@ -15,7 +15,7 @@ public class List extends Element {
                 boolean optClose) {
         super(id);
         assert min >= 0;
-        assert max == null || max > min;
+        assert max == null || max >= min;
         this.elem = elem;
         this.delimiter = delimiter;
         this.min = min;

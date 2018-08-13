@@ -37,13 +37,13 @@ We recommend using [pyleri](https://github.com/transceptor-technology/pyleri) fo
 
 ```java
 // MyGrammar.java
-import jleri.Grammar;
-import jleri.Element;
-import jleri.Sequence;
-import jleri.Regex;
-import jleri.Keyword;
-import jleri.Result;
-import jleri.MaxRecursionException;
+import technology.transceptor.jleri.Grammar;
+import technology.transceptor.jleri.Element;
+import technology.transceptor.jleri.Sequence;
+import technology.transceptor.jleri.Regex;
+import technology.transceptor.jleri.Keyword;
+import technology.transceptor.jleri.Result;
+import technology.transceptor.jleri.MaxRecursionException;
 
 
 public class MyGrammar extends Grammar {
@@ -94,7 +94,7 @@ you should never set the `id` to `null` yourself, just omit the `id` in that cas
 
 ### Keyword
 ```java
-import jleri.Keyword;
+import technology.transceptor.jleri.Keyword;
 //  Keyword(Enum id=null, String keyword, boolean ignCase=false)
 ```
 The parser needs to match the keyword which is just a string. When matching keywords we need to tell the parser what characters are allowed in keywords. By default Jleri uses `^\w+` which is equal to `^[A-Za-z0-9_]+`. We can overwrite the default by using a second argument while calling `super` inside the grammar constructor.
@@ -124,7 +124,7 @@ public class TicTacToe extends Grammar {
 
 ### Regex
 ```java
-import jleri.Regex;
+import technology.transceptor.jleri.Regex;
 // Regex(Enum id=null, <java.util.regex.Pattern, String> pattern)
 ```
 The parser uses a regular expression for matching this element.
@@ -133,7 +133,7 @@ See [Quick usage](#quick-usage) for an example on how to use `jleri.Regex`.
 
 ### Token
 ```java
-import jleri.Token;
+import technology.transceptor.jleri.Token;
 // Token(Enum id=null, <String, Char> token)
 ```
 A token can be one or more characters and is usually used to match operators like `+`, `-`, `//` and so on.
@@ -162,7 +162,7 @@ public class Ni extends Grammar {
 
 ### Tokens
 ```java
-import jleri.Tokens;
+import technology.transceptor.jleri.Tokens;
 // Tokens(Enum id=null, String tokens)
 ```
 Can be used to register multiple tokens at once. The `tokens` argument should be a string with tokens separated by spaces. If given tokens are different in size the parser will try to match the longest tokens first.
@@ -194,7 +194,7 @@ public class Ni extends Grammar {
 
 ### Sequence
 ```java
-import jleri.Sequence;
+import technology.transceptor.jleri.Sequence;
 // Sequence(Enum id=null, Element... elems)
 ```
 The parser needs to match each element in a sequence.
@@ -225,7 +225,7 @@ public class TicTacToe extends Grammar {
 
 ### Choice
 ```java
-import jleri.Choice;
+import technology.transceptor.jleri.Choice;
 // Choice(Enum id=null, boolean mostGreedy=true, Element... elems)
 ```
 The parser needs to choose between one of the given elements. Choice accepts a `boolean` argument `mostGreedy` which when omitted defaults to `true`. When `mostGreedy` is set to `false` the parser will stop at the first match. When `true` the parser will try each element and returns the longest match. Setting `mostGreedy` to `false` can provide some extra performance. Note that the parser will try to match each element in the exact same order they are parsed to Choice.
@@ -259,7 +259,7 @@ public class MyGrammar extends Grammar {
 
 ### Repeat
 ```java
-import jleri.Repeat;
+import technology.transceptor.jleri.Repeat;
 // Repeat(Enum id=null, Element elem, int min=0, Integer max=null)
 ```
 The parser needs at least `min` elements and at most `max` elements. `min` can be any integer value equal or higher than 0. When `max` is set to `null` we allow unlimited number of elements or in case a value is used it must al least equal or higher than `min`.
@@ -302,7 +302,7 @@ public class MyGrammar extends Grammar {
 
 ### List
 ```java
-import jleri.List;
+import technology.transceptor.jleri.List;
 /**
  * List(Enum id=null,
  *      Element elem,
@@ -336,7 +336,7 @@ public class Ni extends Grammar {
 
 ### Optional
 ```java
-import jleri.Optional;
+import technology.transceptor.jleri.Optional;
 // Optional(Enum id=null, Element elem)
 ```
 The parser looks for an optional element. It is like using `Repeat(element, 0, 1)` but we encourage to use `Optional` since it is more readable. (and slightly faster)
@@ -369,7 +369,7 @@ public class MyGrammar extends Grammar {
 
 ### Ref
 ```java
-import jleri.Ref;
+import technology.transceptor.jleri.Ref;
 // Ref()
 ```
 The grammar can make a forward reference to make recursion possible. In the example below we create a forward reference to START but note that
@@ -411,8 +411,8 @@ public class NestedNi extends Grammar {
 
 ### Prio
 ```java
-import jleri.Prio;
-import jleri.This;  // exposes This.THIS
+import technology.transceptor.jleri.Prio;
+import technology.transceptor.jleri.This;  // exposes This.THIS
 // Prio(Enum id, Element... elems)
 ```
 Choose the first match from the `Prio` elements and allow `This.THIS` for recursive operations. With `This.THIS` we point to the `Prio` element.

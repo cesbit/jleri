@@ -1,5 +1,5 @@
 
-package jleri;
+package technology.transceptor.jleri;
 
 public abstract class Element {
     private final Enum id;

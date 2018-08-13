@@ -1,4 +1,4 @@
-package jleri;
+package technology.transceptor.jleri;
 
 public class Repeat extends Element {
     private final Element elem;
@@ -8,7 +8,7 @@ public class Repeat extends Element {
     public Repeat(Enum id, Element elem, int min, Integer max) {
         super(id);
         assert min >= 0;
-        assert max == null || max > min;
+        assert max == null || max >= min;
         this.elem = elem;
         this.min = min;
         this.max = max;

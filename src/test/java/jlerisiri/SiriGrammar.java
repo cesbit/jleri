@@ -5,23 +5,23 @@ package jlerisiri;
  * should be used with the jleri module.
  *
  * Source class: SiriGrammar
- * Created at: 2018-07-04 11:04:44
+ * Created at: 2018-07-09 16:46:46
  */
 
-import jleri.Grammar;
-import jleri.Element;
-import jleri.Token;
-import jleri.Prio;
-import jleri.Keyword;
-import jleri.Sequence;
-import jleri.List;
-import jleri.This;
-import jleri.Repeat;
-import jleri.Choice;
-import jleri.Regex;
-import jleri.Ref;
-import jleri.Tokens;
-import jleri.Optional;
+import technology.transceptor.jleri.Choice;
+import technology.transceptor.jleri.Element;
+import technology.transceptor.jleri.Grammar;
+import technology.transceptor.jleri.Keyword;
+import technology.transceptor.jleri.List;
+import technology.transceptor.jleri.Optional;
+import technology.transceptor.jleri.Prio;
+import technology.transceptor.jleri.Ref;
+import technology.transceptor.jleri.Regex;
+import technology.transceptor.jleri.Repeat;
+import technology.transceptor.jleri.Sequence;
+import technology.transceptor.jleri.This;
+import technology.transceptor.jleri.Token;
+import technology.transceptor.jleri.Tokens;
 
 public class SiriGrammar extends Grammar {
     enum Ids {
