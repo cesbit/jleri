@@ -22,7 +22,14 @@ A left-right parser for the Java language.
 
 ---------------------------------------
 ## Installation
-You can download the latest version [here](https://github.com/transceptor-technology/jleri/releases/latest). But you can also clone this repository and open the project in your favorite Java IDE. After building the project, grab the jleri.jar file and add it to your own project as library.
+You can download the latest version [here](https://github.com/transceptor-technology/jleri/releases/latest).
+But you can also clone this repository and build the project using maven (mvn >= 3.3 and java 8 are recommended):
+
+```bash
+mvn clean install
+```
+
+After building the project, grab the `target/jleri-0.0-SNAPSHOT.jar` file and add it to your own project as library.
 
 ## Related projects
 ---------------------------------------
