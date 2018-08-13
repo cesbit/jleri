@@ -1,1 +1,0 @@
-javac -cp ../jleri.jars:/usr/share/java/junit4.jar jlerijson/JsonGrammar.java jlerisiri/SiriGrammar.java JleriTests.java && java -cp ./:../jleri.jar:/usr/share/java/junit4.jar org.junit.runner.JUnitCore JleriTests
