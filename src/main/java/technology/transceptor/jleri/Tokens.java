@@ -3,7 +3,7 @@ package technology.transceptor.jleri;
 public class Tokens extends Element {
     private final Token[] tokens;
 
-    public Tokens(Enum id, String tokens) {
+    public Tokens(Enum<?> id, String tokens) {
         super(id);
         String[] tStrings = tokens.split("\\s+");
         this.tokens = new Token[tStrings.length];

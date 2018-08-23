@@ -1,16 +1,14 @@
 package technology.transceptor.jleri;
 
-import java.util.Arrays;
-
 public class Token extends Element {
     private final char[] token;
 
-    public Token(Enum id, String token) {
+    public Token(Enum<?> id, String token) {
         super(id);
         this.token = token.toCharArray();
     }
 
-    public Token(Enum id, char token) {
+    public Token(Enum<?> id, char token) {
         super(id);
         this.token = new char[] {token};
     }

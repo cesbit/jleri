@@ -2,16 +2,16 @@
 package technology.transceptor.jleri;
 
 public abstract class Element {
-    private final Enum id;
+    private final Enum<?> id;
 
-    Element(Enum id) {
+    Element(Enum<?> id) {
         this.id = id;
     }
 
     /**
      * @return the id of this element
      */
-    public Enum getId() {
+    public Enum<?> getId() {
         return id;
     }
 

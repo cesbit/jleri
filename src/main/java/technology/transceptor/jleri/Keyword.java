@@ -4,7 +4,7 @@ public class Keyword extends Element {
     private final String keyword;
     private final boolean ignCase;
 
-    public Keyword(Enum id, String keyword, boolean ignCase) {
+    public Keyword(Enum<?> id, String keyword, boolean ignCase) {
         super(id);
         this.keyword = keyword;
         this.ignCase = ignCase;
@@ -14,7 +14,7 @@ public class Keyword extends Element {
         this(null, keyword, ignCase);
     }
 
-    public Keyword(Enum id, String keyword) {
+    public Keyword(Enum<?> id, String keyword) {
         this(id, keyword, false);
     }
 
@@ -31,7 +31,7 @@ public class Keyword extends Element {
 
     @Override
     public String toString() {
-        Enum id = this.getId();
+        Enum<?> id = this.getId();
         return String.format(
             "<Keyword id:%s keyword:%s>", id == null ? id : id.name(), this.keyword);
     }

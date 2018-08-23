@@ -6,7 +6,7 @@ public class Choice extends Element {
     private final boolean mostGreedy;
     private final Element elems[];
 
-    public Choice(Enum id, boolean mostGreedy, Element... elems) {
+    public Choice(Enum<?> id, boolean mostGreedy, Element... elems) {
         super(id);
         assert elems.length > 0;
         this.elems = elems;
@@ -17,7 +17,7 @@ public class Choice extends Element {
         this(null, mostGreedy, elems);
     }
 
-    public Choice(Enum id, Element... elems) {
+    public Choice(Enum<?> id, Element... elems) {
         this(id, true, elems);
     }
 

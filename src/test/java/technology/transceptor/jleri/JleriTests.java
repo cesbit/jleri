@@ -1,9 +1,8 @@
+package technology.transceptor.jleri;
+
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
-import java.util.Arrays;
 import java.util.HashSet;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import technology.transceptor.jleri.Choice;
 import technology.transceptor.jleri.Element;
 import technology.transceptor.jleri.Eos;
@@ -16,7 +15,6 @@ import technology.transceptor.jleri.MaxRecursionException;
 import technology.transceptor.jleri.Ref;
 import technology.transceptor.jleri.Regex;
 import technology.transceptor.jleri.Repeat;
-import technology.transceptor.jleri.Result;
 import technology.transceptor.jleri.Sequence;
 import technology.transceptor.jleri.This;
 import technology.transceptor.jleri.Token;
@@ -41,13 +39,21 @@ public class JleriTests {
         assertEquals(false, grammar.parse("Hi").isValid);
         assertEquals(false, grammar.parse("hello").isValid);
         assertEquals(
-            new HashSet<Element>() {{ }},
-            grammar.parse("hi").getExpecting());
+            new HashSet<Element>() {
+                private static final long serialVersionUID = -7651182429189868214L;
+				{ }
+            },
+            grammar.parse("hi").getExpecting()
+        );
         assertEquals(
-            new HashSet<Element>() {{
-                add(hi);
-            }},
-            grammar.parse("").getExpecting());
+            new HashSet<Element>() {
+			    private static final long serialVersionUID = 1434006479447041932L;
+				{
+                    add(hi);
+                }
+            },
+            grammar.parse("").getExpecting()
+        );
     }
 
     @Test
@@ -64,10 +70,14 @@ public class JleriTests {
         assertEquals(false, grammar.parse("hello").isValid);
         assertEquals(String.format("<Keyword id:%s keyword:hi>", TestIds.ID.name()), hi.toString());
         assertEquals(
-            new HashSet<Element>() {{
-                add(hi);
-            }},
-            grammar.parse("").getExpecting());
+            new HashSet<Element>() {
+                private static final long serialVersionUID = 1824610115261957828L;
+				{
+                    add(hi);
+                }
+            },
+            grammar.parse("").getExpecting()
+        );
     }
 
     @Test
@@ -140,11 +150,15 @@ public class JleriTests {
         assertEquals(false, grammar.parse("hello").isValid);
         assertEquals(0, grammar.parse("").pos);
         assertEquals(
-            new HashSet<Element>() {{
-                add(hi);
-                add(Eos.EOS);
-            }},
-            grammar.parse("x").getExpecting());
+            new HashSet<Element>() {
+                private static final long serialVersionUID = -3292849823502784533L;
+                {
+                    add(hi);
+                    add(Eos.EOS);
+                }
+            },
+            grammar.parse("x").getExpecting()
+        );
         assertEquals(
             String.format(
                 "<Optional id:null elem:%s>",
