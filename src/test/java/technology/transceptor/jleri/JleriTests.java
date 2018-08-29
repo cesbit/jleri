@@ -297,12 +297,18 @@ public class JleriTests {
         Ref ref = new Ref();
         Keyword hi = new Keyword("hi");
         Grammar grammar = new Grammar(ref);
+
+        // assert statements (before set)
+        assertEquals(false, ref.isSet());
+        assertEquals(String.format("<Ref isSet:false>", hi), ref.toString());
+
         ref.set(hi);
 
         // assert statements
         assertEquals(true, grammar.parse("hi").isValid);
         assertEquals(false, grammar.parse("").isValid);
-        assertEquals(String.format("<Ref elem:%s>", hi), ref.toString());
+        assertEquals(true, ref.isSet());
+        assertEquals(String.format("<Ref isSet:true>", hi), ref.toString());
     }
 
     @Test

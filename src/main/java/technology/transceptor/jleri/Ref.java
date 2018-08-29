@@ -13,6 +13,10 @@ public class Ref extends Element {
         return this.elem;
     }
 
+    public boolean isSet() {
+        return this.elem != null;
+    }
+
     @Override
     Node parse(Parser p, Node parent, Rule r) throws MaxRecursionException {
         return elem.parse(p, parent, r);
@@ -20,6 +24,6 @@ public class Ref extends Element {
 
     @Override
     public String toString() {
-        return String.format("<Ref elem:%s>", this.elem);
+        return String.format("<Ref isSet:%b>", this.isSet());
     }
 }
