@@ -95,7 +95,7 @@ javac -cp jleri.jar MyGrammar.java && java -cp ./:jleri.jar MyGrammar
 ```
 
 ## Elements
-Jleri has several elements which can be used to create a grammar. Each element is a subclass of `jleri.Keyword` and accepts an optional first `Enum id` which
+Jleri has several elements which can be used to create a grammar. Each element is a subclass of `jleri.Element` and accepts an optional first `Enum id` which
 can be used to identify the Element, for example in an node tree. The default id is set to `null` but as a user of jleri
 you should never set the `id` to `null` yourself, just omit the `id` in that case.
 
